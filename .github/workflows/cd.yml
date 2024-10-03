@@ -1,0 +1,30 @@
+# This Workflow reuses the general cd workflow, where you can find at:
+# https://github.com/ativoscapital/jedi.workflows/blob/main/.github/workflows/node-cd.yaml
+
+# This Workflow expects the following inputs:
+# - CONTEXT: the context (path) that the workflow will run
+# - DOCKERFILE: the path for the Dockerfile
+# - IMAGE_NAME: the name of the image that will be saved in the github container docker registry
+# - INFRA_REPOSITORY: the {owner}/{repository} of the infra, defaults to ativoscapital/infra-disparopro
+# - INFRA_PROJECT: the project inside the infra repository, usually {context}/{projectName}
+# - INFRA_BRANCH: the branch that will be used inside the infra repository
+
+
+name: CD invoice
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: ativoscapital/jedi.workflows/.github/workflows/node-cd.yaml@main
+    with:
+      CONTEXT: .
+      DOCKERFILE: ./Dockerfile
+      IMAGE_NAME: ativoscapital/invoice
+      INFRA_PROJECT: invoice/invoice
+      INFRA_REPOSITORY: ativoscapital/disparopro.ultimate.infra
+      INFRA_BRANCH: main
+    secrets: inherit

@@ -1,0 +1,43 @@
+{
+  "owner?": {
+    "id?": "number",
+    "name?": "string"
+  },
+  "kind?": "Subscription|RechargeOmniChannel|RechargeTransaction|Feature",
+  "name?": "Growth|Package500|ExtraUser",
+  "date?": "Date",
+  "status?": "Paid|Processing|Aproved|ETC",
+  "salesChannel?": "Website|SaaS",
+  "plan?": {
+    "id?": "number",
+    "name?": "string"
+  },
+  "paymentDetails?": {
+    "amount?": "number",
+    "discount?": "number",
+    "tax?": "number",
+    "total?": "number",
+    "kind?": "Monthly|Annual",
+    "date?": "Date",
+    "bank?": "string",
+    "country?": "string",
+    "IBAN?": "string",
+    "codigo?": "string"
+  },
+  "paymentMethod?": {
+    "kind?": "CreditCard|Pix|PayPal"
+  },
+  "billingDetails?": {
+    "documentNumber?": "number",
+    "legalName?": "string",
+    "address?": {
+      "street?": "string",
+      "number?": "number",
+      "postalCode?": "string",
+      "state?": "string",
+      "city?": "string",
+      "neighborhood?": "string",
+      "country?": "string"
+    }
+  }
+}

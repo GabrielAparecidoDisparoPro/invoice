@@ -1,0 +1,39 @@
+name: SDK Release invoice
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "sdk/**"
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions: write-all
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      NODE_AUTH_TOKEN: ${{ secrets.TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8.9.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          always-auth: true
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@ativoscapital"
+
+      - run: pnpm install
+
+      - run: pnpm sdk:release --registry=https://npm.pkg.github.com/

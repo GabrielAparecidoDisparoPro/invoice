@@ -1,0 +1,17 @@
+# This Workflow reuses the general ci workflow, where you can find at:
+# https://github.com/ativoscapital/jedi.workflows/blob/main/.github/workflows/node-general-ci.yaml
+
+# This Workflow expects that your lock file is up to date, a lint:ci,
+# test:ci and build scripts are configured in your package.json
+
+name: CI invoice
+on:
+  pull_request: 
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: ativoscapital/jedi.workflows/.github/workflows/node-general-ci.yaml@main
+    secrets: inherit

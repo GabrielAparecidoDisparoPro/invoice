@@ -1,0 +1,2 @@
+pnpm lint:pre-commit
+git update-index --again
