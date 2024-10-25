@@ -16,7 +16,8 @@ import { Environment } from './Environment'
       useFactory: (env: Environment) => {
         return {
           secretKey: env.JWT_SECRET_KEY,
-          internalToken: env.INTERNAL_TOKEN
+          internalToken: env.INTERNAL_TOKEN,
+          global: false
         }
       },
       inject: [Environment]

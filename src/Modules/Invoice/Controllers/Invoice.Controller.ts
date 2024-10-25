@@ -1,4 +1,8 @@
-import { type IJwtPayload, JwtPayload } from '@ativoscapital/jedi.node.nestjs'
+import {
+  type IJwtPayload,
+  JwtPayload,
+  PublicRoute
+} from '@ativoscapital/jedi.node.nestjs'
 import { TypedBody, TypedParam, TypedQuery, TypedRoute } from '@nestia/core'
 import { Controller } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
@@ -132,14 +136,13 @@ export class InvoiceController {
    * Inserts a new invoice.
    */
   @TypedRoute.Post('/')
+  @PublicRoute()
   async insertOne(
-    @TypedBody() body: InsertInvoice.Input['data'],
-    @JwtPayload() { email }: IJwtPayload
+    @TypedBody() body: InsertInvoice.Input['data']
   ): Promise<InsertInvoice.Output> {
     return this.commandBus.execute(
       new InsertInvoice.Command({
-        data: body,
-        email
+        data: body
       })
     )
   }

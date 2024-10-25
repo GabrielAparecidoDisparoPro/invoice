@@ -144,7 +144,7 @@ export namespace InvoiceMongoose {
         modelName: Invoice.name,
         collectionName: 'invoices',
         Entity: Invoice,
-        filterableFields: ['id', 'auditInfo.created.at', 'state'],
+        filterableFields: ['id', 'auditInfo.created.at', 'state', 'status'],
         sortableFields: ['auditInfo.created.at'],
         Schema: InvoiceSchema
       })

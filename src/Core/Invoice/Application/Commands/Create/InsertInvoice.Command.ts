@@ -1,6 +1,11 @@
 import { Repository } from '@ativoscapital/jedi.node.core'
 import { AbstractCommand, AbstractHandler } from '@ativoscapital/jedi.node.cqrs'
-import { Invoice, InvoiceContracts, InvoiceInterfaces } from '../../../Domain'
+import {
+  Invoice,
+  InvoiceContracts,
+  InvoiceEnums,
+  InvoiceInterfaces
+} from '../../../Domain'
 
 /**
  * Namespace for the Insert Invoice use case.
@@ -62,17 +67,21 @@ export namespace InsertInvoice {
       const { invoiceRepository } = this.repositories
 
       const { data, email } = input.data
+      data.status = InvoiceEnums.Status.Processing
 
-      const entity = Invoice.Factory(data, {
-        auditInfo: {
-          created: {
-            at: new Date(),
-            email: email ?? null
-          },
-          deleted: null,
-          updated: null
+      const entity = Invoice.Factory(
+        { ...data },
+        {
+          auditInfo: {
+            created: {
+              at: new Date(),
+              email: email ?? null
+            },
+            deleted: null,
+            updated: null
+          }
         }
-      })
+      )
 
       const invoice = await invoiceRepository.insert(entity, options)
 

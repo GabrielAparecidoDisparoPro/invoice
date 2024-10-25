@@ -15,7 +15,7 @@ export namespace InvoiceEnums {
   export enum Status {
     Paid = 'Paid',
     Processing = 'Processing',
-    Aproved = 'Aproved',
+    Approved = 'Approved',
     ETC = 'ETC'
   }
 
