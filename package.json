@@ -6,7 +6,6 @@
     "name": "Gabriel Aparecido",
     "email": "gabriel.aparecido@disparopro.com.br"
   },
-  "private": "false",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
